@@ -1,27 +1,52 @@
+function getRandomDogFact() {
+    return fetch('https://dogapi.dog/api/v2/facts')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch dog facts');
+            }
+            return response.json();
+        })
+        .then(data => {
+            const fact = data.facts[0];
+            return fact;
+        })
+        .catch(error => {
+            console.error('Error fetching random dog fact:', error);
+            return null;
+        });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const dialogBox = document.getElementById('dialog-box');
     const query = { active: true, currentWindow: true };
 
     chrome.tabs.query(query, (tabs) => {
-        dialogBox.innerHTML = getBarkedTitle(tabs[0].title);
+        getRandomDogFact()
+            .then(fact => {
+                dialogBox.innerHTML = fact;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                dialogBox.innerHTML = "Failed to fetch random dog fact.";
+            })
+        // dialogBox.innerHTML = getSubjectTitle(tabs[0].title);
     });
 });
 
-const getBarkedTitle = (tabTitle) => {
-    const barkTitle = `${getRandomBark()} Ahem.. I mean, we are at: ${tabTitle}`
-    return barkTitle;
+const getSubjectTitle = (tabTitle) => {
+    const subjectTitle = `${getRandomSubject()} Ahem.. I mean, we are at: ${tabTitle}`
+    return subjectTitle;
 }
 
-const barks = [
-    'Barf barf!',
-    'Birf birf!',
-    'Woof woof!',
-    'Arf arf!',
-    'Yip yip!',
-    'Biiiirf!'
+const subjects = [
+    'Taylor Swift https://www.thefactsite.com/taylor-swift-facts/',
+    'Chiefs',
+    'Animal Lovers',
+    'UTSA',
+    'Engineering'
 ]
 
-const getRandomBark = () => {
-    const bark = barks[Math.floor(Math.random() * barks.length)];
-    return bark;
+const getRandomSubject = () => {
+    const subject = subjects[Math.floor(Math.random() * subjects.length)];
+    return subject;
 }
