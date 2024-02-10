@@ -17,41 +17,43 @@ function getRandomDogFact() {
         });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+// function getTayTayLyric() {
+//     return fetch('https://taylor-swift-api.sarbo.workers.dev/lyrics?shouldRandomizeLyrics=true&numberOfParagraphs=1');
+// }
+
+document.addEventListener('DOMContentLoaded', async () => {
     const dialogBox = document.getElementById('dialog-box');
     const query = { active: true, currentWindow: true };
 
-    getRandomDogFact()
-        .then(fact => {
-            dialogBox.innerHTML = fact;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            dialogBox.innerHTML = "Failed to fetch random dog fact.";
-        })
+    try {
+        const fact = await getRandomFunFact();
+        dialogBox.innerHTML = fact;
+    } catch (error) {
+        console.error('Error:', error);
+        dialogBox.innerHTML = "Failed to fetch random...";
+    }
 
-    // chrome.tabs.query(query, (tabs) => {
-    //     getRandomDogFact()
-    //         .then(fact => {
-    //             dialogBox.innerHTML = fact;
-    //         })
-    //         .catch(error => {
-    //             console.error('Error:', error);
-    //             dialogBox.innerHTML = "Failed to fetch random dog fact.";
-    //         })
-    //     // dialogBox.innerHTML = getSubjectTitle(tabs[0].title);
-    // });
 });
 
-const getSubjectTitle = (tabTitle) => {
-    const subjectTitle = `${getRandomSubject()} Ahem.. I mean, we are at: ${tabTitle}`
-    return subjectTitle;
+async function getRandomFunFact() {
+    const subject = subjects[Math.floor(Math.random() * subjects.length)];
+    let text = `Fun fact about ${subject}.`;
+
+    if (subject == "Dogs") {
+        const fact = await getRandomDogFact();
+        text = `Fun fact about ${subject}. ${fact}`;
+        return text;
+    } else if (subject == "Taylor Swift") {
+        return `Here is a Taylor Swift song lyric:`;
+    } else {
+        return text;
+    }
 }
 
 const subjects = [
-    'Taylor Swift https://www.thefactsite.com/taylor-swift-facts/',
-    'Chiefs',
-    'Animal Lovers',
+    'Taylor Swift',
+    'the Chiefs',
+    'Dogs',
     'UTSA',
     'Engineering'
 ]
