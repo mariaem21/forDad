@@ -7,7 +7,8 @@ function getRandomDogFact() {
             return response.json();
         })
         .then(data => {
-            const fact = data.facts[0];
+            const fact = data.data[0].attributes.body;
+            console.log(data);
             return fact;
         })
         .catch(error => {
@@ -20,17 +21,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const dialogBox = document.getElementById('dialog-box');
     const query = { active: true, currentWindow: true };
 
-    chrome.tabs.query(query, (tabs) => {
-        getRandomDogFact()
-            .then(fact => {
-                dialogBox.innerHTML = fact;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                dialogBox.innerHTML = "Failed to fetch random dog fact.";
-            })
-        // dialogBox.innerHTML = getSubjectTitle(tabs[0].title);
-    });
+    getRandomDogFact()
+        .then(fact => {
+            dialogBox.innerHTML = fact;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            dialogBox.innerHTML = "Failed to fetch random dog fact.";
+        })
+
+    // chrome.tabs.query(query, (tabs) => {
+    //     getRandomDogFact()
+    //         .then(fact => {
+    //             dialogBox.innerHTML = fact;
+    //         })
+    //         .catch(error => {
+    //             console.error('Error:', error);
+    //             dialogBox.innerHTML = "Failed to fetch random dog fact.";
+    //         })
+    //     // dialogBox.innerHTML = getSubjectTitle(tabs[0].title);
+    // });
 });
 
 const getSubjectTitle = (tabTitle) => {
