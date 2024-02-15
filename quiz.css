@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(214, 117, 117);
+    /* background-color: rgb(237, 190, 249); */
+    /* background-color: #83a1fb; */
+  }
+  
+  #quiz {
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    background-color: #83a1fb;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(198, 222, 60, 0.2);
+  }
+
+  #lyric {
+    font-family: 'Pacifico', cursive;
+  }
+  
+  h1 {
+    text-align: center;
+    /* color: #333333; */
+  }
+  
+  #question {
+    margin-bottom: 20px;
+    color: #131313;
+  }
+  
+  #options {
+    display: grid;
+    gap: 10px;
+    margin: 0 auto;
+    padding: 20px 30px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  #results {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: rgb(237, 190, 249);
+    color: #131313;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  button {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    width: 100%;
+    background-color: rgb(237, 190, 249);
+    color: #131313;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #8f8d8d;
+  }
