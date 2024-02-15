@@ -8,7 +8,7 @@ function getTayTaySong(songNumber) {
         })
         .then(lyrics => {
             const fact = lyrics.song_title;
-            console.log(fact);
+            // console.log(fact);
             return fact;
         })
         .catch(error => {
@@ -27,7 +27,7 @@ function getTayTayLyric(songNumber) {
         })
         .then(lyrics => {
             const fact = extractFirstFourLines(lyrics.lyrics);
-            console.log(fact);
+            // console.log(fact);
             return fact;
         })
         .catch(error => {
@@ -78,14 +78,14 @@ async function showQuestion() {
     const lyric = await getTayTayLyric(question.options[question.answer]);
     lyricElement.innerText = lyric;
 
-    console.log(question.options[question.answer]);
+    // console.log(question.options[question.answer]);
 
     optionsElement.innerHTML = "";
     for (option in question.options) { 
         const button = document.createElement("button");
         const song = await getTayTaySong(question.options[option]);
 
-        console.log(question.options[option]);
+        // console.log(question.options[option]);
 
         button.innerText = song;
         optionsElement.appendChild(button);
