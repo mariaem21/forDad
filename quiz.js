@@ -101,7 +101,7 @@ async function selectAnswer(a) {
         resultsElement.innerText = "Correct!";
         console.log("Nice one Dad!");
     } else {
-        resultsElement.style.backgroundColor = 'rgb(214, 117, 117)';
+        resultsElement.style.backgroundColor = 'rgb(237, 190, 249)'; // 'rgb(214, 117, 117)';
         resultsElement.innerText = `Wrong. The correct answer is ${finalAnswer}.`;
         console.log("That's okay! Just keep practicing, you'll get it!");
     }
