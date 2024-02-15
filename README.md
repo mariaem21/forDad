@@ -8,3 +8,5 @@ your favorite artist!
 3. Click Load unpacked.
 4. Find and select the folder called 'forDad'.
 5. Pin to search engine.
+# How It Works
+This chrome extension randomly selects Taylor Swift songs and uses https://github.com/sarbor/taylor_swift_api to pull 4 verses of the song's lyrics. It is your job to correctly select the song title of that Taylor Swift song, which shouldn't be hard for you, super fan!
